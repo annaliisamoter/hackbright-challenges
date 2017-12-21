@@ -69,7 +69,7 @@ def is_leap_year(year):
     if year % 4 == 0:
         return True
 
-
+#4. Days in Month
 def days_in_month(date):
     """How many days are there in a month, given a string with month and the year as ints?
 
@@ -91,7 +91,7 @@ def days_in_month(date):
             return 30
 
 
-#4. Find lucky numbers
+#5. Find lucky numbers
 def lucky_numbers(n):
     """Return n unique random numbers from 1-10 (inclusive). If more than one
         number is asked for, there should be no repeats in nums returned.
@@ -110,7 +110,7 @@ def lucky_numbers(n):
             lucky_nums.append(lucky_num[0])
     return lucky_nums
 
-#5. Find range
+#6. Find range
 def find_range(nums):
     """Given list of numbers, return smallest & largest number as a tuple.
     >>> find_range([3, 4, 2, 5, 10])
@@ -131,8 +131,7 @@ def find_range(nums):
         sorted_nums = sorted(nums)
         return (sorted_nums[0], sorted_nums[-1])
 
-#6. Fizzbuzz
-
+#7. Fizzbuzz
 def fizzbuzz():
     """Count from 1 to 20 in fizzbuzz fashion.
     >>> fizzbuzz()
@@ -167,7 +166,7 @@ def fizzbuzz():
         else:
             print i
 
-#7. Has more vowels
+#8. Has more vowels
 def has_more_vowels(word):
     """Does word contain more vowels than non-vowels?
     >>> has_more_vowels("moose")
@@ -197,7 +196,7 @@ def has_more_vowels(word):
     else:
         return False
 
-#8. Has Unique Characters
+#9. Has Unique Characters
 def has_unique_chars(word):
     """Does word contains unique set of characters?
     >>> has_unique_chars("Monday")
@@ -221,7 +220,7 @@ def has_unique_chars(word):
 
     return True
 
-#9. Is a number prime?
+#10. Is a number prime?
 def is_prime(num):
     """Is a number a prime number?
     >>> is_prime(0)
@@ -254,4 +253,96 @@ def is_prime(num):
     #I seem to recall there being a more efficient way to do this with only 
     #range up to the square root of num, but I can't seem to get that version to 
     #work).
+
+#11. Is a word a Palindrome?
+def is_palindrome(word):
+    """Return True/False if this word is a palindrome.
+    >>> is_palindrome("a")
+    True
+
+    >>> is_palindrome("noon")
+    True
+
+    >>> is_palindrome("racecar")
+    True
+
+    >>> is_palindrome("porcupine")
+    False
+    >>> is_palindrome("Racecar")
+    False
+    """
+    index = 0
+    for letter in word:
+        index += 1
+        if letter != word[- index]:
+            return False
+    return True
+
+#12. Largest smaller than
+def find_largest_smaller_than(nums, xnumber):
+    """Return the index of largest number in sorted list that is smaller than given number.
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 10)
+    2
+
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 33)
+    4
+
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], -1)
+    1
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], 8)
+    2
+    >>> find_largest_smaller_than([-5, -2, 8, 12, 32], -10) is None
+    True
+    """
+    result = None
+    index = -1
+    if xnumber > nums[-1]:
+        return len(nums) - 1
+
+    if xnumber < nums[0]:
+        return None
+
+    for num in nums:
+        index += 1
+        if num > xnumber:
+            result = index - 1
+            break
+
+    return result
+
+#13. Turn into Leet speak
+def translate_leet(phrase):
+    """Translates input into "leet-speak".
+
+    Letter  Becomes
+        a   @
+        o   0
+        e   3
+        l   1
+        s   5
+        t   7
+    >>> translate_leet("Hi Balloonicorn")
+    'Hi B@1100nic0rn'
+
+    >>> translate_leet("Hackbright is the Shizzle")
+    'H@ckbrigh7 i5 7h3 5hizz13'
+        """
+    translated = ""
+
+    leet_speak = {
+        'a': '@',
+        'o': '0',
+        'e': '3',
+        'l': '1',
+        's': '5',
+        't': '7',
+    }
+
+    for char in phrase:
+        translated += leet_speak.get(char.lower(), char)
+
+    return translated
+    #my first solutiong involved a lot of if elif statements for each character.
+    #but this acted very strangely in practice.  Ended up looking at the solution.
+
 
