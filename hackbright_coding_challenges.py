@@ -110,3 +110,148 @@ def lucky_numbers(n):
             lucky_nums.append(lucky_num[0])
     return lucky_nums
 
+#5. Find range
+def find_range(nums):
+    """Given list of numbers, return smallest & largest number as a tuple.
+    >>> find_range([3, 4, 2, 5, 10])
+    (2, 10)
+
+    >>> find_range([43, 3, 44, 20, 2, 1, 100])
+    (1, 100)
+    >>> find_range([])
+    (None, None)
+    >>> find_range([7])
+    (7, 7)
+    """
+    if nums == []:
+        return (None, None)
+    elif len(nums) == 1:
+        return (nums[0], nums[0])
+    else:
+        sorted_nums = sorted(nums)
+        return (sorted_nums[0], sorted_nums[-1])
+
+#6. Fizzbuzz
+
+def fizzbuzz():
+    """Count from 1 to 20 in fizzbuzz fashion.
+    >>> fizzbuzz()
+    1
+    2
+    fizz
+    4
+    buzz
+    fizz
+    7
+    8
+    fizz
+    buzz
+    11
+    fizz
+    13
+    14
+    fizzbuzz
+    16
+    17
+    fizz
+    19
+    buzz
+    """
+    for i in range(1, 21):
+        if i % 3 == 0 and i % 5 == 0:
+            print "fizzbuzz"
+        elif i % 3 == 0:
+            print "fizz"
+        elif i % 5 == 0:
+            print "buzz"
+        else:
+            print i
+
+#7. Has more vowels
+def has_more_vowels(word):
+    """Does word contain more vowels than non-vowels?
+    >>> has_more_vowels("moose")
+    True
+    >>> has_more_vowels("mice")
+    False
+
+    >>> has_more_vowels("graph")
+    False
+    >>> has_more_vowels("yay")
+    False
+    >>> has_more_vowels("Aal")
+    True
+    """
+    vowel_set = set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])
+    consts = []
+    vowels = []
+
+    for letter in word:
+        if letter in vowel_set:
+            vowels.append(letter)
+        else:
+            consts.append(letter)
+
+    if len(vowels) > len(consts):
+        return True
+    else:
+        return False
+
+#8. Has Unique Characters
+def has_unique_chars(word):
+    """Does word contains unique set of characters?
+    >>> has_unique_chars("Monday")
+    True
+
+    >>> has_unique_chars("Moonday")
+    False
+
+    >>> has_unique_chars("")
+    True
+    >>> has_unique_chars("Bob")
+    True
+    """
+    letter_counts = {}
+    for letter in word:
+        letter_counts[letter] = letter_counts.get(letter, 0) + 1
+
+    for key, value in letter_counts.items():
+        if value > 1:
+            return False
+
+    return True
+
+#9. Is a number prime?
+def is_prime(num):
+    """Is a number a prime number?
+    >>> is_prime(0)
+    False
+
+    >>> is_prime(1)
+    False
+    >>> is_prime(2)
+    True
+
+    >>> is_prime(3)
+    True
+
+    >>> is_prime(4)
+    False
+
+    >>> is_prime(11)
+    True
+
+    >>> is_prime(999)
+    False
+    """
+    if num == 0 or num == 1:
+        return False
+    else:
+        for i in range(2, num):
+            if num % i == 0:
+                return False
+    return True
+    #I seem to recall there being a more efficient way to do this with only 
+    #range up to the square root of num, but I can't seem to get that version to 
+    #work).
+
